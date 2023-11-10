@@ -58,12 +58,12 @@ library(multcomp)
 # SET DIRECTORY AND READ FILE #
 ###############################
 
-figs_dir = "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\figs\\"
+figs_dir = "./code/figs/"
 
-mydir<- "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\data\\"
+mydir<- "./data/"
 
 
-data_FHIT3 = readRDS( "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\data_FHIT3")
+data_FHIT3 = readRDS( "./code/Rfiles/data_FHIT3")
 
 
 
@@ -243,35 +243,32 @@ plot_copula = function(string_type, string_typevstype, data){
   
 }
 
-#no need to run anymore
-# result_bl_adhd_tsa = coptest.p(as.matrix(data_FHIT3_adhd[,c(5:10)]) ,
-#                                as.matrix(data_FHIT3_tsa[,c(5:10)]) ,
-#                                nperm = 100,approx = FALSE)
-# 
-# result_bl_adhd_tsa$tbl
-# 
-# 
-# result_bl_adhd_dys = coptest.p(as.matrix(data_FHIT3_adhd[,c(5:10)]) ,
-#                                as.matrix(data_FHIT3_dys[,c(5:10)]) ,
-#                                nperm = 100,approx = FALSE)
-# 
-# result_bl_adhd_dys$tbl
-# 
-# 
-# 
-# result_bl_tsa_dys = coptest.p(as.matrix(data_FHIT3_dys[,c(5:10)]) ,
-#                               as.matrix(data_FHIT3_tsa[,c(5:10)]) ,
-#                               nperm = 100,approx = FALSE)
-# 
-# result_bl_tsa_dys$tbl
 
-# saveRDS(result_bl_adhd_tsa,file = "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\result_bl_adhd_tsa.rds" )
-# saveRDS(result_bl_adhd_dys, file = "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\result_bl_adhd_dys.rds"  ) 
-# saveRDS(result_bl_tsa_dys, file = "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\result_bl_tsa_dys.rds" )
+result_bl_adhd_tsa = coptest.p(as.matrix(data_FHIT3_adhd[,c(5:10)]) ,
+                               as.matrix(data_FHIT3_tsa[,c(5:10)]) ,
+                                nperm = 100,approx = FALSE)
 
-result_bl_adhd_tsa<- readRDS("C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\result_bl_adhd_tsa.rds")
-result_bl_adhd_dys<- readRDS("C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\result_bl_adhd_dys.rds")
-result_bl_tsa_dys<- readRDS("C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\result_bl_tsa_dys.rds")
+result_bl_adhd_tsa$tbl
+ 
+
+result_bl_adhd_dys = coptest.p(as.matrix(data_FHIT3_adhd[,c(5:10)]) ,
+                               as.matrix(data_FHIT3_dys[,c(5:10)]) ,
+                                nperm = 100,approx = FALSE)
+
+result_bl_adhd_dys$tbl
+
+
+
+result_bl_tsa_dys = coptest.p(as.matrix(data_FHIT3_dys[,c(5:10)]) ,
+                              as.matrix(data_FHIT3_tsa[,c(5:10)]) ,
+                             nperm = 100,approx = FALSE)
+
+result_bl_tsa_dys$tbl
+
+saveRDS(result_bl_adhd_tsa,file = "./code/Rfiles/result_bl_adhd_tsa.rds" )
+saveRDS(result_bl_adhd_dys, file = "./code/Rfiles/result_bl_adhd_dys.rds"  ) 
+saveRDS(result_bl_tsa_dys, file = "./code/Rfiles/result_bl_tsa_dys.rds" )
+
 
 
 #################################
@@ -962,7 +959,7 @@ head(new_data_param_unscreen)
 
 
 saveRDS(new_data_param_unscreen, 
-        file = "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\new_unscreen_param_beta.rds")
+        file = "./code/Rfiles/new_unscreen_param_beta.rds")
 
 
 
@@ -1045,11 +1042,9 @@ new_data_nonparm = new_data_nonparm %>%
 head(new_data_nonparm)
 
 
-#new_data_nonparm = new_data_nonparm[,-8] #CHECK HERE !!!!!!  -- removed above!!!
-#head(new_data_nonparm)
 
 saveRDS(new_data_nonparm, 
-        file = "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\new_data_nonparam_200.rds")
+        file = "./code/Rfiles/new_data_nonparam_200.rds")
 
 
 #########

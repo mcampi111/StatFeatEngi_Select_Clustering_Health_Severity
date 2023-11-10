@@ -89,16 +89,16 @@ myfviz_silhouette <- function (sil.obj, var.col, label = FALSE, print.summary = 
 # SET DIRECTORY AND READ FILE #
 ###############################
 
-figs_dir = "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\figs\\"
+figs_dir = "./code/figs/"
 
-mydir<- "C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\data\\"
-
-
-new_data_parm = readRDS("C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\new_data_param_500.rds")
-new_data_nonparm = readRDS("C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\new_data_nonparam.rds")
+mydir<- "./data./" # data not shared for privacy 
 
 
-new_data_param_unscreen = readRDS("C:\\Users\\mcampi\\Desktop\\Simo_MariaPia\\code\\Rfiles\\new_unscreen_param_beta.rds")
+new_data_parm = readRDS("./code/Rfiles/new_data_param_500.rds")
+new_data_nonparm = readRDS("./code/Rfiles/new_data_nonparam.rds")
+
+
+new_data_param_unscreen = readRDS("./code/Rfiles/new_unscreen_param_beta.rds")
 new_data_parm = new_data_param_unscreen
 
 features = c('mean', 'var', 'distr', 'cop')
@@ -338,34 +338,6 @@ for (i in 1:length(km.res.param)) {
 grid.arrange(grobs = plot_list, ncol = 4)
 
 
-# # Initialize an empty list to store ggplot objects
-# plot_list <- list()
-# 
-# # Define a color mapping for Type2 values
-# color_mapping <- c("Control" = "orange", "DYS" = "yellow", "ADHD" = "green", "ASD" = "pink")
-# 
-# # Loop through the combinations of km.res.param and datakmeans_param
-# for (i in 1:length(km.res.param)) {
-#   for (j in 1:length(km.res.param[[i]])) {
-#     # Create a ggplot object for each combination
-#     p <- fviz_cluster(
-#       km.res.param[[i]][[j]],
-#       data = datakmeans_param[[i]][[j]],
-#       ellipse.type = "convex",
-#       ggtheme = theme_bw(),
-#       labelsize = 8,
-#       aes(fill = Type2)
-#     ) +
-#       scale_fill_manual(values = color_mapping) +
-#       custom_theme +
-#       labs(title = "") +
-#       scale_shape_manual(labels = c("ASD", "Control", "ADHD", "DYS"))
-#     
-#     # Store the ggplot object in the list
-#     plot_list[[length(plot_list) + 1]] <- p
-#   }
-# }
-
 
 km.res.nonparam <- lapply(1:length(datacluster_nonparam), function(i)
   lapply(1:length(datacluster_nonparam[[i]]), function(j) 
@@ -490,9 +462,6 @@ do.call(rbind, do.call(c, lapply(1:length(datacluster_param), function(i)
                 summarise(size = n(), 
                   ave.sil.width=round(mean(sil_width), 2))) )) ) )
 
-#capture.output(fviz_silhouette(sil_kmeans_param[[i]][[j]]))
-
-
 
 
 avg_sil_nonparam = lapply(1:length(datacluster_nonparam), function(i)
@@ -616,8 +585,6 @@ fviz_silhouette(res.hc.param[[1]][[1]], palette = c("green", "yellow","pink","or
         legend.position = 'right',
         axis.text=element_text(size=5, angle = 90)) #+ 
 dev.off() 
-# scale_color_manual(values = c("pink","orange","green","yellow" ),
-#                    labels = c("ASD", "Control", "ADHD", "DYS")) 
 
 
 pdf( paste(figs_dir, "sil_hclust_nonparam.pdf", sep = ""), width = 12, height = 9 )  
@@ -654,151 +621,5 @@ result_overall_nonparam_hier = rbind(do.call(rbind, avg_sil_nonparam_hier[[1]]),
 
 kable(result_overall_nonparam_hier, format = "latex", digit = 3)
 
-
-
-#########
-#  PCA  #
-#########
-
-corMat_param <- cor(param_scaled[,c(1:12)])
-corrplot(corMat_param, order = "hclust")
-
-corMat_nonparam <- cor(nonparam_scaled[,c(1:12)])
-corrplot(corMat_nonparam, order = "hclust")
-
-
-
-res.pca.param <- PCA(param_hierarhical, scale.unit=TRUE, graph = T)
-res.pca.nonparam <- PCA(nonparam_hierarhical, scale.unit=TRUE, graph = T)
-
-
-#This line of code will sort the variables the most linked to each PC.
-dimdesc(res.pca.param)
-dimdesc(res.pca.nonparam)
-
-
-summary(res.pca.param)
-summary(res.pca.nonparam)
-
-
-######################
-# Graph of variables #
-######################
-
-#Eigenvalues / Variances
-fviz_eig(res.pca.param, addlabels = TRUE)
-fviz_eig(res.pca.nonparam, addlabels = TRUE)
-
-
-#Quality of representation
-var_param <- get_pca_var(res.pca.param)
-var_nonparam <- get_pca_var(res.pca.nonparam)
-
-
-corrplot(var_param$cos2, is.corr=FALSE)
-corrplot(var_nonparam$cos2, is.corr=FALSE)
-
-# The cos2 values are used to estimate the quality of the representation
-# The closer a variable is to the circle of correlations, the better its 
-# representation on the factor map (and the more important it is to interpret these components)
-# Variables that are closed to the center of the plot are less important for the first components
-
-
-fviz_pca_var(res.pca.param, col.var = "cos2",
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             repel = TRUE )
-
-fviz_pca_var(res.pca.nonparam, col.var = "cos2",
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             repel = TRUE )
-
-
-#Contributions of variables to PCs
-fviz_contrib(res.pca.param, choice = "var", axes = 1, top = 10)
-fviz_contrib(res.pca.nonparam, choice = "var", axes = 2, top = 10)
-
-
-#######################
-# Graph of individuals
-#######################
-
-fviz_pca_ind(res.pca.param)
-fviz_pca_ind(res.pca.nonparam)
-
-
-
-fviz_pca_biplot(res.pca.param, 
-                # Fill individuals by groups
-                geom.ind = "point",
-                pointshape = 21,
-                pointsize = 2.5,
-                fill.ind = param_scaled$Type,
-                col.ind = "black",
-                # Color variable by groups
-                # col.var = factor(c("sepal", "sepal", "petal", "petal")), #THINK ABOUT THIS
-                
-                legend.title = list(fill="Type", color="Clusters"),
-                repel = TRUE        # Avoid label overplotting
-)+
-  ggpubr::fill_palette("jco")+      # Indiviual fill color
-  ggpubr::color_palette("npg")      # Variable colors
-
-
-custom_theme2 <- theme_bw() + 
-  theme(panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        legend.position = 'right',
-        axis.text=element_text(size=15, angle = 90),
-        axis.title.y = element_text(size = 18),
-        axis.title.x = element_text(size = 18),
-        legend.title=element_text(size=16), 
-        legend.text=element_text(size=15))
-
-
-
-
-fviz_pca_biplot(res.pca.param, 
-                # Individuals
-                geom.ind = "point",
-                fill.ind = param_scaled$Type2, 
-                #col.ind = factor(new_data_bl$Type2),
-                pointshape = 21, 
-                pointsize = 2, 
-                palette = c("pink","gold", "green", "orange"),  
-                #palette = "jco",
-                addEllipses = TRUE,
-                # Variables
-                alpha.var ="contrib",
-                col.var = "contrib",
-                gradient.cols = "RdYlBu",
-                legend.title = list(fill = "Children", 
-                                    color = "Contrib.",
-                                    alpha = "Contrib.")
-) + custom_theme2 +  
-  labs(title = "") 
-
-
-
-
-
-fviz_pca_biplot(res.pca.nonparam, 
-                # Individuals
-                geom.ind = "point",
-                fill.ind = param_scaled$Type2, 
-                #col.ind = factor(new_data_bl$Type2),
-                pointshape = 21, 
-                pointsize = 2, 
-                palette = c("pink","gold", "green", "orange"),  
-                #palette = "jco",
-                addEllipses = TRUE,
-                # Variables
-                alpha.var ="contrib",
-                col.var = "contrib",
-                gradient.cols = "RdYlBu",
-                legend.title = list(fill = "Children", 
-                                    color = "Contrib.",
-                                    alpha = "Contrib.")
-) + custom_theme2 +  
-  labs(title = "") 
 
 
