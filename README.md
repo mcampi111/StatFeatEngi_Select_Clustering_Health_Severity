@@ -40,3 +40,15 @@ The repository is organized in the following folders:
 + 2) real_data 
 ```
 
+
+## Cite
+
+If you use this code in your project, please cite:
+
+@article{..,
+  title={..},
+  author={..},
+  journal={..},
+  year={..}
+}
+
