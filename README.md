@@ -24,7 +24,13 @@ This study introduces a statistical tool for improved discriminatory testing, fa
 The repository is organized in the following folders:
 
 ```diff
-+ 1) code
++ 1) RFiles
+```
+
+
+
+```diff
++ 2) code 
 ```
 
 1.  **clustering.R**. This file containes...
@@ -34,12 +40,7 @@ The repository is organized in the following folders:
 
 
 ```diff
-+ 2) paper 
-```
-
-
-```diff
-+ 2) real_data 
++ 3) figs 
 ```
 
 
