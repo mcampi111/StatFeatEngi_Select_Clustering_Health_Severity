@@ -26,7 +26,7 @@ The repository is organized in the following folders:
 ```diff
 + 1) Rfiles
 ```
-This folder contains the R files derived during the analysis. Therefore, one can find the generated features with parametric and non-parametric distribution with seval sample sizes for both the screened and the unscreened features and the results from the statistical tests. 
+This folder contains the R files derived during the analysis. One can find the generated features with parametric and non-parametric distribution with seval sample sizes for both the screened and the unscreened features and the results from the statistical tests. The original data are available under request.
 
 ```diff
 + 2) code 
