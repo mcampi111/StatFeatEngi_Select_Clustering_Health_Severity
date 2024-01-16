@@ -1,5 +1,5 @@
 # NeuroDeficits-ML
-Repository with data and code of the paper "Eye Movement Features for Clustering of Neurodevelopmental deficits with Machine Learning Approaches"
+Repository with data and code of the paper "Eye Movement Features for Clustering of Neurodevelopmental deficits with Machine Learning Approaches". The paper is given at this url ...
 
 ## **Abstract**
 
@@ -32,16 +32,16 @@ This folder contains the R files derived during the analysis. One can find the g
 + 2) code 
 ```
 
-1.  **clustering.R**. This file containes...
-2. **data_analysis.R**. This file containes...
-3.  **feature_engineering.R**. This file containes...
-4.  **functions_param_bootstrap.R**. This file containes...
+1.  **clustering.R**. This file containes the functions and code implemented to perform the K-Means and the HWM in the main body of the paper.
+2. **data_analysis.R**. This file containes the initial data analysis and wrangling generating the tsne results and the violin plots.
+3.  **feature_engineering.R**. This file performs the statistical tests and the feature engineering procedure described in the main body of the paper.
+4.  **functions_param_bootstrap.R**. This file containes the R functions required to perform the bootstrapping procedures, both parametric and non-parametric.
 
 
 ```diff
 + 3) figs 
 ```
-
+All the figure implemented through R are provided in this folder. The code used to generate them is in the code folder. 
 
 ## Cite
 
