@@ -1,5 +1,5 @@
 # NeuroDeficits-ML
-Repository with data and code of the paper "Eye Movement Features for Classification of Neurodevelopmental deficits with Machine Learning Approaches"
+Repository with data and code of the paper "Eye Movement Features for Clustering of Neurodevelopmental deficits with Machine Learning Approaches"
 
 ## **Abstract**
 
