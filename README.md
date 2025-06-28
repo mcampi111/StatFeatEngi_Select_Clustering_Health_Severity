@@ -28,9 +28,14 @@ This folder contains the R files derived during the analysis. Note that the bigg
 + 2) code 
 ```
 
-1.  **clustering.R**. This file containes the functions and code implemented to perform the K-Means and the HWM in the main body of the paper.
-2. **data_analysis.R**. This file containes the initial data analysis and wrangling generating the tsne results and the violin plots.
-3.  **feature_engineering.R**. This file performs the statistical tests and the feature engineering procedure described in the main body of the paper.
+1. **clustering.R**. This file containes the functions and code implemented to perform the K-Means and the HWM in the main body of the paper.
+2. **data_analysis_SPIN_ML.R**. This file containes the initial data analysis and wrangling generating the tsne results and the violin plots.
+3. **feature_engineering.R**. This file performs the statistical tests and the feature engineering procedure described in the main body of the paper.
+4. **feature_selection.R**. This file performs the the feature selection procedure described in the main body of the paper.
+5. **dependence_example.R**. This file performs the plots provided in the Supplementary Appendix describing different dependence structures.
+6. **utils.R**. This file contains all the functions and utils required to run this R package.
+7. **results_feat_selection_v2.R**. This file performs the analysis for the results of the feature selections, generating figures and tables of the main body of the paper.
+
 
 
 ```diff
