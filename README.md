@@ -1,4 +1,4 @@
-# StatFeatEngi_Select_Clustering_Health_Severity
+# Multivariate Screening and Feature Engineering for Statistical Decision Making in Disease Severity Diagnostics
 Repository with data and code of the paper "Multivariate Screening and Feature Engineering for Statistical Decision Making in Disease Severity Diagnostics". The preprint of this paper is given at this url https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5264112
 
 ## **Abstract**
@@ -22,7 +22,7 @@ The repository is organized in the following folders:
 ```diff
 + 1) Rfiles
 ```
-This folder contains the R files derived during the analysis. 
+This folder contains the R files derived during the analysis. Note that the bigger files for bootstrap with 500 or 1000 are too big - hence these are available under request to the corresponding author of the paper.
 
 ```diff
 + 2) code 
